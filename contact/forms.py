@@ -4,15 +4,26 @@ from contact.models import Contact
 import re
 
 class ContactForm(forms.ModelForm):
+
+    picture = forms.ImageField(
+        label='Imagem',
+        widget=forms.FileInput(
+            attrs={
+                'accept': 'image/*',
+            }     
+        )
+    )
+
     class Meta:
         model = Contact
-        fields = ['first_name', 'last_name', 'email', 'phone', 'category' ]
+        fields = ['first_name', 'last_name', 'email', 'phone', 'category','picture' ]
         labels = {
             'first_name': 'Nome',
             'last_name': 'Sobrenome',
             'email': 'E-mail',
             'phone': 'Telefone',
             'category': 'Categoria',
+            'picture': 'Imagem',
         }
         error_messages = {
             'email': {
